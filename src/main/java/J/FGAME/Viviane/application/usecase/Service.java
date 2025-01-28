@@ -60,11 +60,11 @@ public class Service {
         try{
             Collection client = MapperClass.toCollection(repository.findById(info.getEmail()));
             if(client.getScore() >= info.getScore()){
-                return new ResponseEntity<>("1", HttpStatus.OK);
+                return new ResponseEntity<>("1", HttpStatus.ACCEPTED);
             } else{
                 client.setScore(info.getScore());
                 repository.save(client);
-                return new ResponseEntity<>("4", HttpStatus.ACCEPTED);
+                return new ResponseEntity<>("4", HttpStatus.OK);
             }
         }catch(InputMismatchException imm){
             imm.printStackTrace();
