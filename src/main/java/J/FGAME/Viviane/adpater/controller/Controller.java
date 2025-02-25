@@ -1,8 +1,11 @@
 package J.FGAME.Viviane.adpater.controller;
 
+import J.FGAME.Viviane.application.domain.CollectionPhrases;
 import J.FGAME.Viviane.application.domain.Informations;
+import J.FGAME.Viviane.application.domain.Phrases;
 import J.FGAME.Viviane.application.usecase.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,5 +29,11 @@ public class Controller {
     public Object SetScore(@RequestBody Informations info){
         System.out.println(service.SetScore(info));
         return service.SetScore(info);
+    }
+
+    @GetMapping("/Frases/{valor}")
+    public ResponseEntity<CollectionPhrases> takePhrases(@PathVariable String valor){
+        ResponseEntity response = service.pegarFrases(valor);
+        return response;
     }
 }

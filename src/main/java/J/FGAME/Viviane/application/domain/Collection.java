@@ -1,6 +1,5 @@
 package J.FGAME.Viviane.application.domain;
 
-import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
