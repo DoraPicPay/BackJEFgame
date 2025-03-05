@@ -1,10 +1,9 @@
 package J.FGAME.Viviane.application.usecase;
 
 import J.FGAME.Viviane.adpater.repository.Repository;
+import J.FGAME.Viviane.adpater.repository.RepositoryDescricao;
 import J.FGAME.Viviane.adpater.repository.RepositoryPhrases;
-import J.FGAME.Viviane.application.domain.Collection;
-import J.FGAME.Viviane.application.domain.CollectionPhrases;
-import J.FGAME.Viviane.application.domain.Informations;
+import J.FGAME.Viviane.application.domain.*;
 import J.FGAME.Viviane.application.usecase.Methods.MapperClass;
 import J.FGAME.Viviane.application.usecase.Methods.MapperJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,9 @@ public class Service {
 
     @Autowired
     RepositoryPhrases repoPhrases;
+
+    @Autowired
+    RepositoryDescricao repoDescricao;
 
     public Object Register(Informations info){
         try{
@@ -85,7 +87,19 @@ public class Service {
         Optional<CollectionPhrases> verificacao = repoPhrases.findById(valor);
         if(verificacao.isPresent()){
             CollectionPhrases docValor = verificacao.get();
-            var jason = mapperJS.toJson(docValor);
+            var jason = mapperJS.colPhrasestoJson(docValor);
+            return new ResponseEntity<>(jason, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity pegarDescricao(String valor){
+        Optional<CollectionDescricao> verificacao = repoDescricao.findById(valor);
+        if(verificacao.isPresent()){
+            CollectionDescricao docValor = verificacao.get();
+            var jason = mapperJS.colDescriocaoJson(docValor);
             return new ResponseEntity<>(jason, HttpStatus.OK);
         }
         else{

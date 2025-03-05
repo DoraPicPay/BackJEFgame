@@ -1,11 +1,8 @@
 package J.FGAME.Viviane.application.domain;
 
-import lombok.Getter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "DescricaoValores")
-public class CollectionDescricao {
+public class Descricao {
     @Id
     String valor;
     String descricao;
@@ -37,10 +34,10 @@ public class CollectionDescricao {
 
     @Override
     public String toString() {
-        return "CollectionDescricao{" +
+        return "Descricao{" +
                 "valor='" + valor + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", imagem='" + imagem + '\'' +
+                ", urlImagem='" + imagem + '\'' +
                 '}';
     }
 }

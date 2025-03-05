@@ -32,8 +32,12 @@ public class Controller {
     }
 
     @GetMapping("/Frases/{valor}")
-    public ResponseEntity<CollectionPhrases> takePhrases(@PathVariable String valor){
-        ResponseEntity response = service.pegarFrases(valor);
-        return response;
+    public Object takePhrases(@PathVariable String valor){
+        return service.pegarFrases(valor);
     }
+
+    @GetMapping("/Descricao/{valor}")
+    public Object takeDescription(@PathVariable String valor){
+        return service.pegarDescricao(valor);
+    };
 }
